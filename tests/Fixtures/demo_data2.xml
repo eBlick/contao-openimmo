@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openimmo>
+    <uebertragung art="OFFLINE" umfang="VOLL" modus="CHANGE" version="1.2.7" sendersoftware="OOF"
+                  senderversion="$Rev: 157060 $" techn_email="foo@e-blick.de" timestamp="2022-05-20T15:08:06.0+00:00"/>
+    <anbieter>
+        <anbieternr>0099</anbieternr>
+        <firma>eBlick Medienberatung</firma>
+        <openimmo_anid>0099</openimmo_anid>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="1" GEWERBE="0"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <haus haustyp="EINFAMILIENHAUS"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>52078</plz>
+                <ort>Aachen / Brand</ort>
+                <geokoordinaten breitengrad="50.12345" laengengrad="6.12345"/>
+                <strasse>Bar-Str.</strasse>
+                <hausnummer>99</hausnummer>
+                <land iso_land="DEU"/>
+                <anzahl_etagen>2</anzahl_etagen>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>foo@e-blick.de</email_zentrale>
+                <email_direkt>info@demoimmo.myonoffice.de</email_direkt>
+                <tel_zentrale>+49 99 88 77 66</tel_zentrale>
+                <tel_durchw>+49 123456789</tel_durchw>
+                <tel_fax>+491234567</tel_fax>
+                <name/>
+                <anrede>Firma</anrede>
+                <anrede_brief>Sehr geehrte Damen und Herren,</anrede_brief>
+                <firma>DemoImmo</firma>
+                <strasse>Musterstraße</strasse>
+                <hausnummer>5</hausnummer>
+                <plz>52068</plz>
+                <ort>Aachen</ort>
+                <land iso_land="DEU"/>
+                <url>www.demoimmo.myonoffice.de</url>
+                <personennummer>117</personennummer>
+            </kontaktperson>
+            <preise>
+                <kaufpreis auf_anfrage="0">299000.50</kaufpreis>
+                <aussen_courtage mit_mwst="1">3,57 % inkl. MwSt.</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+            </preise>
+            <bieterverfahren/>
+            <versteigerung/>
+            <flaechen>
+                <wohnflaeche>160.00</wohnflaeche>
+                <grundstuecksflaeche>680.00</grundstuecksflaeche>
+                <anzahl_zimmer>6.00</anzahl_zimmer>
+                <anzahl_schlafzimmer>3.00</anzahl_schlafzimmer>
+                <anzahl_badezimmer>2.00</anzahl_badezimmer>
+                <anzahl_terrassen>1</anzahl_terrassen>
+                <anzahl_stellplaetze>1</anzahl_stellplaetze>
+            </flaechen>
+            <ausstattung>
+                <boden/>
+                <kamin>1</kamin>
+                <heizungsart FUSSBODEN="1"/>
+                <befeuerung GAS="1"/>
+                <sauna>1</sauna>
+                <wintergarten>1</wintergarten>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>2002</baujahr>
+                <zustand zustand_art="GEPFLEGT"/>
+                <energiepass>
+                    <epart>VERBRAUCH</epart>
+                    <gueltig_bis>2022-04-05</gueltig_bis>
+                    <energieverbrauchkennwert>158.00</energieverbrauchkennwert>
+                    <primaerenergietraeger>ALTERNATIV</primaerenergietraeger>
+                    <wertklasse>E</wertklasse>
+                    <jahrgang>2008</jahrgang>
+                </energiepass>
+                <verkaufstatus stand="OFFEN"/>
+                <user_defined_simplefield feldname="epass_wertklasse">E</user_defined_simplefield>
+                <user_defined_simplefield feldname="epass_baujahr">2002</user_defined_simplefield>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur>
+                <distanzen distanz_zu="KINDERGAERTEN">2.20</distanzen>
+                <distanzen distanz_zu="GRUNDSCHULE">2.80</distanzen>
+                <distanzen distanz_zu="REALSCHULE">3.30</distanzen>
+                <distanzen distanz_zu="GYMNASIUM">4.00</distanzen>
+                <distanzen distanz_zu="AUTOBAHN">2.00</distanzen>
+                <distanzen distanz_zu="ZENTRUM">1.50</distanzen>
+            </infrastruktur>
+            <freitexte>
+                <objekttitel>Schöne Immobilie in Aachen</objekttitel>
+                <dreizeiler/>
+                <lage>…</lage>
+                <ausstatt_beschr>…</ausstatt_beschr>
+                <objektbeschreibung>…</objektbeschreibung>
+                <sonstige_angaben>…</sonstige_angaben>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>Haus Fassade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Titelbild_431.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Erdgeschoss Wohn-/ Essbereich</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_435.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>1. Etage Zimmer</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_439.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Zimmer 2</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_441.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Bad</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_443.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="GRUNDRISS">
+                    <anhangtitel>Grundriss (optimiert)</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_447.jpg</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>1</objektadresse_freigeben>
+                <verfuegbar_ab>ab sofort</verfuegbar_ab>
+                <haustiere>1</haustiere>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>27</objektnr_intern>
+                <objektnr_extern>AF437</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>0099_27_AF437</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2022-04-21</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="0" GEWERBE="1"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <buero_praxen buero_typ="PRAXISHAUS"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>91522</plz>
+                <ort>Ansbach</ort>
+                <geokoordinaten breitengrad="50.12345" laengengrad="6.12345"/>
+                <strasse>Foobar Str.</strasse>
+                <hausnummer>6</hausnummer>
+                <land iso_land="DEU"/>
+                <anzahl_etagen>4</anzahl_etagen>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>foo@e-blick.de</email_zentrale>
+                <email_direkt>info@demoimmo.myonoffice.de</email_direkt>
+                <tel_zentrale>+49 99 88 77 66</tel_zentrale>
+                <tel_durchw>+49 123456789</tel_durchw>
+                <tel_fax>+491234567</tel_fax>
+                <name/>
+                <anrede>Firma</anrede>
+                <anrede_brief>Sehr geehrte Damen und Herren,</anrede_brief>
+                <firma>DemoImmo</firma>
+                <strasse>Musterstraße</strasse>
+                <hausnummer>5</hausnummer>
+                <plz>52068</plz>
+                <ort>Aachen</ort>
+                <land iso_land="DEU"/>
+                <url>www.demoimmo.myonoffice.de</url>
+                <personennummer>117</personennummer>
+            </kontaktperson>
+            <preise>
+                <kaufpreis auf_anfrage="0">0</kaufpreis>
+                <kaltmiete>430.00</kaltmiete>
+                <warmmiete>580.00</warmmiete>
+                <nebenkosten>150.00</nebenkosten>
+                <heizkosten_enthalten>0</heizkosten_enthalten>
+                <heizkosten>60.00</heizkosten>
+                <betriebskostennetto betriebskostenust="0">150</betriebskostennetto>
+                <gesamtbelastungbrutto>580.00</gesamtbelastungbrutto>
+                <heizkostennetto heizkostenust="0">60</heizkostennetto>
+                <aussen_courtage mit_mwst="1">3,5%</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+                <kaution>860</kaution>
+                <kaution_text>2 Monatskaltmieten</kaution_text>
+                <stp_freiplatz stellplatzmiete="45.00" anzahl="10"/>
+            </preise>
+            <bieterverfahren/>
+            <versteigerung/>
+            <flaechen>
+                <gesamtflaeche>800.00</gesamtflaeche>
+                <bueroflaeche>500.00</bueroflaeche>
+                <anzahl_zimmer>3.00</anzahl_zimmer>
+                <anzahl_schlafzimmer>1.00</anzahl_schlafzimmer>
+                <anzahl_badezimmer>1.00</anzahl_badezimmer>
+                <anzahl_stellplaetze>10</anzahl_stellplaetze>
+                <anzahl_tagungsraeume>2.00</anzahl_tagungsraeume>
+            </flaechen>
+            <ausstattung>
+                <boden FLIESEN="1" LAMINAT="1" MARMOR="1"/>
+                <heizungsart ZENTRAL="1"/>
+                <befeuerung OEL="1"/>
+                <fahrstuhl PERSONEN="1"/>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>1960</baujahr>
+                <zustand zustand_art="TEIL_VOLLSANIERT"/>
+                <energiepass>
+                    <epart>VERBRAUCH</epart>
+                    <gueltig_bis>2024-06-03</gueltig_bis>
+                    <energieverbrauchkennwert>350.00</energieverbrauchkennwert>
+                    <stromwert>200.00</stromwert>
+                    <waermewert>300.00</waermewert>
+                    <wertklasse>G</wertklasse>
+                    <jahrgang>2014</jahrgang>
+                </energiepass>
+                <verkaufstatus stand="OFFEN"/>
+                <user_defined_simplefield feldname="epass_wertklasse">G</user_defined_simplefield>
+                <user_defined_simplefield feldname="epass_baujahr">1960</user_defined_simplefield>
+                <user_defined_simplefield feldname="epass_stromwert">200.00</user_defined_simplefield>
+                <user_defined_simplefield feldname="epass_waermewert">300.00</user_defined_simplefield>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur>
+                <distanzen distanz_zu="KINDERGAERTEN">3.00</distanzen>
+                <distanzen distanz_zu="GRUNDSCHULE">4.00</distanzen>
+                <distanzen distanz_zu="REALSCHULE">7.00</distanzen>
+                <distanzen distanz_zu="GYMNASIUM">6.00</distanzen>
+                <distanzen distanz_zu="AUTOBAHN">5.00</distanzen>
+                <distanzen distanz_zu="ZENTRUM">4.00</distanzen>
+            </infrastruktur>
+            <freitexte>
+                <objekttitel>Freundliche Praxiseinheit am südlichen Stadtrand</objekttitel>
+                <dreizeiler/>
+                <lage>…</lage>
+                <ausstatt_beschr>…</ausstatt_beschr>
+                <objektbeschreibung>…</objektbeschreibung>
+                <sonstige_angaben>…</sonstige_angaben>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>Hausfassade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Titelbild_449.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Küche / Essbereich</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_451.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Wohnbereich</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_453.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Zimmer 1</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_455.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Zimmer 2</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_457.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Bad</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_459.jpg</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>1</objektadresse_freigeben>
+                <verfuegbar_ab>sofort</verfuegbar_ab>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>29</objektnr_intern>
+                <objektnr_extern>TP891</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>0099_29_TP891</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2022-04-25</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="0" GEWERBE="1"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <buero_praxen buero_typ="BUEROHAUS"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>52078</plz>
+                <ort>Aachen</ort>
+                <geokoordinaten breitengrad="50.12345" laengengrad="6.12345"/>
+                <strasse>Some Street.</strasse>
+                <land iso_land="DEU"/>
+                <anzahl_etagen>2</anzahl_etagen>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>foo@e-blick.de</email_zentrale>
+                <email_direkt>info@demoimmo.myonoffice.de</email_direkt>
+                <tel_zentrale>+49 99 88 77 66</tel_zentrale>
+                <tel_durchw>+49 123456789</tel_durchw>
+                <tel_fax>+491234567</tel_fax>
+                <name/>
+                <anrede>Firma</anrede>
+                <anrede_brief>Sehr geehrte Damen und Herren,</anrede_brief>
+                <firma>DemoImmo</firma>
+                <strasse>Musterstraße</strasse>
+                <hausnummer>5</hausnummer>
+                <plz>52068</plz>
+                <ort>Aachen</ort>
+                <land iso_land="DEU"/>
+                <url>www.demoimmo.myonoffice.de</url>
+                <personennummer>117</personennummer>
+            </kontaktperson>
+            <preise>
+                <kaufpreis auf_anfrage="0">330000.00</kaufpreis>
+                <aussen_courtage mit_mwst="1">3,57 % inkl. MwSt.</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+                <stp_garage stellplatzkaufpreis="15000.00" anzahl="2"/>
+            </preise>
+            <bieterverfahren/>
+            <versteigerung/>
+            <flaechen>
+                <wohnflaeche>180.00</wohnflaeche>
+                <grundstuecksflaeche>560.00</grundstuecksflaeche>
+                <anzahl_zimmer>5.00</anzahl_zimmer>
+                <anzahl_stellplaetze>2</anzahl_stellplaetze>
+            </flaechen>
+            <ausstattung>
+                <boden FERTIGPARKETT="1" DIELEN="1"/>
+                <heizungsart FUSSBODEN="1"/>
+                <befeuerung GAS="1" SOLAR="1"/>
+                <kabel_sat_tv>1</kabel_sat_tv>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>2013</baujahr>
+                <zustand zustand_art="NEUWERTIG"/>
+                <energiepass>
+                    <epart>BEDARF</epart>
+                    <gueltig_bis>2023-04-18</gueltig_bis>
+                    <endenergiebedarf>240.00</endenergiebedarf>
+                    <primaerenergietraeger>GAS</primaerenergietraeger>
+                    <stromwert>120.00</stromwert>
+                    <waermewert>150.00</waermewert>
+                    <wertklasse>D</wertklasse>
+                    <jahrgang>2008</jahrgang>
+                </energiepass>
+                <verkaufstatus stand="OFFEN"/>
+                <user_defined_simplefield feldname="epass_wertklasse">D</user_defined_simplefield>
+                <user_defined_simplefield feldname="epass_baujahr">2013</user_defined_simplefield>
+                <user_defined_simplefield feldname="epass_stromwert">120.00</user_defined_simplefield>
+                <user_defined_simplefield feldname="epass_waermewert">150.00</user_defined_simplefield>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur/>
+            <freitexte>
+                <objekttitel>Grundstück mit Hanglage</objekttitel>
+                <dreizeiler/>
+                <lage>…</lage>
+                <ausstatt_beschr>…</ausstatt_beschr>
+                <objektbeschreibung>…</objektbeschreibung>
+                <sonstige_angaben>…</sonstige_angaben>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>Haus _ Fassade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Titelbild_461.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Küche / Essbereich</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_465.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Wohnbereich</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_467.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Zimmer 1</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_469.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Zimmer 2</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_471.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Zimmer 3</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_473.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Bad</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_475.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Garten</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_477.jpg</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>1</objektadresse_freigeben>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>77</objektnr_intern>
+                <objektnr_extern>6666</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>0099_77_6666</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2022-04-25</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+    </anbieter>
+</openimmo>

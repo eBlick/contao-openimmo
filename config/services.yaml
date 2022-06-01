@@ -1,0 +1,30 @@
+services:
+  EBlick\ContaoOpenImmoImport\Command\ImportCommand:
+    arguments:
+      - '@EBlick\ContaoOpenImmoImport\Import\Importer'
+      - '%kernel.project_dir%'
+    tags:
+      - { name: console.command }
+
+  EBlick\ContaoOpenImmoImport\Import\DatabaseSynchronizer:
+    arguments:
+      - '@database_connection'
+      - '@EBlick\ContaoOpenImmoImport\Import\ResourceUtil'
+
+  EBlick\ContaoOpenImmoImport\Import\Importer:
+    arguments:
+      - '@database_connection'
+      - '@EBlick\ContaoOpenImmoImport\Import\Data\Normalizer'
+      - '@EBlick\ContaoOpenImmoImport\Import\DatabaseSynchronizer'
+      - '@EBlick\ContaoOpenImmoImport\Import\ResourceUtil'
+      - '@?logger'
+    tags:
+      - { name: monolog.logger, channel: contao.general }
+
+  EBlick\ContaoOpenImmoImport\Import\ResourceUtil:
+    arguments:
+      - '%kernel.project_dir%/%contao.upload_path%'
+      - 'openimmo'
+      - '@contao.filesystem.dbafs.files'
+
+  EBlick\ContaoOpenImmoImport\Import\Data\Normalizer: ~

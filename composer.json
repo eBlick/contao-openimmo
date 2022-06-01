@@ -1,0 +1,52 @@
+{
+  "name": "eblick/contao-openimmo",
+  "license": "proprietary",
+  "type": "bundle",
+  "require": {
+    "php": "^8.1",
+    "ext-dom": "*",
+    "ext-zip": "*",
+    "contao/core-bundle": "^4.13",
+    "ujamii/openimmo": "^0.10",
+    "symfony/filesystem": "^5.4"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0",
+    "bamarni/composer-bin-plugin": "^1.4",
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "EBlick\\ContaoOpenImmoImport\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "EBlick\\ContaoOpenImmoImport\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "EBlick\\ContaoOpenImmoImport\\ContaoManager\\Plugin",
+    "bamarni-bin": {
+      "bin-links": false,
+      "target-directory": "tools"
+    }
+  },
+  "scripts": {
+    "cs": [
+      "tools/ecs/vendor/bin/ecs check src tests --config tools/ecs/config/default.php --fix --ansi"
+    ],
+    "tests": [
+      "vendor/bin/phpunit --colors=always"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "bamarni/composer-bin-plugin": true,
+      "contao/manager-plugin": true,
+      "contao-components/installer": true,
+      "cweagans/composer-patches": true
+    },
+    "sort-packages": true
+  }
+}
