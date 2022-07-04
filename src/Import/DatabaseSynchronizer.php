@@ -81,22 +81,22 @@ class DatabaseSynchronizer
                 'cc_fiba_objekte',
                 array_merge(
                     $objectToCreate->getObjectProperties(),
-                    $this->getImageReferenceData($objectToCreate),
+                    $this->getResourceReferences($objectToCreate),
                     [
                         'pid' => $ccFibaAnbieterId,
                         'ptable' => 'cc_fiba_anbieter',
-                        'tstamp' => time(),
+                        'tstamp' => $time = time(),
+                        'date_create' => $time,
                         'alias' => $objectToCreate->getObjectAlias(),
                         'property_number' => $objectToCreate->getObjectId(),
                         'betreuer' => (string) $this->findBetreuerId($objectToCreate),
 
-                        // static defaults
+                        // Static defaults
                         'published' => '1',
                         'top_object' => '',
                         'notelist' => '',
                         'quelle' => 'onoffice',
                         'protection_usergroup' => 2,
-                        'pfad' => null,
                     ]
                 )
             );
@@ -106,7 +106,7 @@ class DatabaseSynchronizer
         foreach ($itemsToUpdate as $id => $objectToUpdate) {
             $columns = array_merge(
                 $objectToUpdate->getObjectProperties(),
-                $this->getImageReferenceData($objectToUpdate),
+                $this->getResourceReferences($objectToUpdate),
                 ['published' => '1']
             );
 
@@ -122,8 +122,7 @@ class DatabaseSynchronizer
             );
         }
 
-        // $this->connection->commit();
-        $this->connection->rollBack();
+        $this->connection->commit();
 
         // Return stats
         return [
@@ -211,7 +210,7 @@ class DatabaseSynchronizer
     /**
      * @return array<string, string>
      */
-    private function getImageReferenceData(ObjectData $objectData): array
+    private function getResourceReferences(ObjectData $objectData): array
     {
         $resourcePathMap = $this->fileUtil->getResourcePathMap($objectData);
 
@@ -221,20 +220,27 @@ class DatabaseSynchronizer
             [Connection::PARAM_STR_ARRAY]
         );
 
-        $mainImage = $uuidsByPath[$resourcePathMap[$objectData->getMainImage()] ?? null] ?? '';
-
-        $galleryImages = array_filter(
+        $getUuids = static fn (array $archivePaths) => array_filter(
             array_map(
                 static fn (string $path): string => $uuidsByPath[$resourcePathMap[$path]] ?? null,
-                $objectData->getGalleryImages()
+                $archivePaths,
             )
         );
 
+        $titleImage = $getUuids([$objectData->getTitleImage()])[0] ?? null;
+        $galleryImages = serialize($getUuids($objectData->getGalleryImages()));
+        $documents = serialize($getUuids($objectData->getDocuments()));
+        $otherAttachments = serialize($getUuids($objectData->getOtherAttachments()));
+
         return [
-            'image' => $mainImage,
-            'gallery' => $gallery = serialize($galleryImages),
-            'orderSRC_gallery' => $gallery,
+            'image' => $titleImage,
+            'gallery' => $galleryImages,
+            'orderSRC_gallery' => $galleryImages,
             'gallery_fullsize' => '1',
+            'expose' => $documents,
+            'ordersrc_expose' => $documents,
+            'dokuments' => $otherAttachments,
+            'ordersrc_dokuments' => $otherAttachments,
         ];
     }
 }

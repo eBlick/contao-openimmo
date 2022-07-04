@@ -13,24 +13,21 @@ use Contao\StringUtil;
 
 class ObjectData
 {
-    public const IMAGE_TYPE_TITLE = true;
-    public const IMAGE_TYPE_GALLERY = false;
-
     /**
      * @param array<string, int|string|null> $objectProperties
      * @param array<string, int|string|null> $agentData
-     * @param array<string, bool>            $imageData
+     * @param array<string, ResourceType>    $resourceData
      */
     public function __construct(
-        private string $anbieterNr,
-        private string $objectId,
-        private array $objectProperties,
-        private array $agentData,
-        private array $imageData,
+        private readonly string $anbieterNr,
+        private readonly string $objectId,
+        private readonly array $objectProperties,
+        private readonly array $agentData,
+        private readonly array $resourceData,
     ) {
     }
 
-    public function getAnbieterNr()
+    public function getAnbieterNr(): string
     {
         return $this->anbieterNr;
     }
@@ -58,27 +55,46 @@ class ObjectData
         return $this->agentData;
     }
 
-    public function getImageFiles(): array
+    public function getResourceFiles(): array
     {
-        return array_keys($this->imageData);
+        return array_keys($this->resourceData);
     }
 
-    public function getMainImage(): string|null
+    public function getTitleImage(): string|null
     {
-        $candidates = array_filter(
-            $this->imageData,
-            static fn (bool $type): bool => self::IMAGE_TYPE_TITLE === $type,
-        );
-
-        return array_key_first($candidates);
+        return $this->getResourcesOfType(ResourceType::titleImage)[0] ?? null;
     }
 
+    /**
+     * @return list<string>
+     */
     public function getGalleryImages(): array
+    {
+        return $this->getResourcesOfType(ResourceType::galleryImage);
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function getDocuments(): array
+    {
+        return $this->getResourcesOfType(ResourceType::document);
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function getOtherAttachments(): array
+    {
+        return $this->getResourcesOfType(ResourceType::other);
+    }
+
+    private function getResourcesOfType(ResourceType $type): array
     {
         return array_keys(
             array_filter(
-                $this->imageData,
-                static fn (bool $type): bool => self::IMAGE_TYPE_GALLERY === $type,
+                $this->resourceData,
+                static fn (ResourceType $t): bool => $t === $type,
             )
         );
     }

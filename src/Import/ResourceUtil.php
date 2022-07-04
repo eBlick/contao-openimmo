@@ -41,7 +41,7 @@ class ResourceUtil
     {
         $map = [];
 
-        foreach ($objectData->getImageFiles() as $path) {
+        foreach ($objectData->getResourceFiles() as $path) {
             $map[$path] = Path::makeRelative(
                 Path::join($this->getResourceBasePath($objectData), $path),
                 Path::getDirectory($this->uploadDir)

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace EBlick\ContaoOpenImmoImport\Import\Data;
 
+use Ujamii\OpenImmo\API\Anhang;
 use Ujamii\OpenImmo\API\Immobilie;
 use Ujamii\OpenImmo\API\Unterkellert;
 
@@ -32,7 +33,7 @@ class Normalizer
             $objectId,
             $this->compileObjectProperties($immobilie),
             $this->compileAgentData($immobilie),
-            $this->compileImageData($immobilie)
+            $this->compileResourceData($immobilie)
         );
     }
 
@@ -63,6 +64,10 @@ class Normalizer
         $stellplatzArt = $ausstattung?->getStellplatzart()[0] ?? null;
         $energieAusweis = $zustand?->getEnergiepass()[0] ?? null;
 
+        $stellplatzGarage = $preise?->getStpGarage();
+        $stellplatzCarport = $preise?->getStpCarport();
+        $stellplatzFreiplatz = $preise?->getStpFreiplatz();
+
         $objektartMap = [
             'Haus' => ($objektart?->getHaus()[0] ?? null)?->getHaustyp(),
             'Wohnung' => ($objektart?->getWohnung()[0] ?? null)?->getWohnungtyp(),
@@ -84,10 +89,11 @@ class Normalizer
 
         // Compile record
         return [
-            // Veröffentlichung
+            // Veröffentlichung + allgmeine Metadaten
             'verfuegbar_ab' => (string) $verwaltungObjekt?->getVerfuegbarAb(),
             'abdatum' => $verwaltungObjekt?->getAbdatum()?->format('d.m.Y') ?? '',
             'bisdatum' => $verwaltungObjekt?->getBisdatum()?->format('d.m.Y') ?? '',
+            'user' => (string) $immobilie->getKontaktperson()?->getEmailZentrale(),
 
             // Kategorie
             'nutzungsart' => $this->serializeFlags([
@@ -130,6 +136,15 @@ class Normalizer
             'betriebskostennetto' => (string) $preise?->getBetriebskostennetto()?->getValue(),
             'heizkosten' => (string) $preise?->getHeizkosten(),
             'heizkosten_enthalten' => $this->asCharBool($preise?->getHeizkostenEnthalten()),
+            'stp_freiplatz_preis' => $this->formatMoney(
+                $stellplatzFreiplatz?->getStellplatzkaufpreis() ?? $stellplatzFreiplatz?->getStellplatzmiete()
+            ),
+            'stp_carport_preis' => $this->formatMoney(
+                $stellplatzCarport?->getStellplatzkaufpreis() ?? $stellplatzCarport?->getStellplatzmiete()
+            ),
+            'stp_garage_preis' => $this->formatMoney(
+                $stellplatzGarage?->getStellplatzkaufpreis() ?? $stellplatzGarage?->getStellplatzmiete()
+            ),
 
             // Flächen
             'wohnflaeche' => (string) $flaechen?->getWohnflaeche(),
@@ -147,8 +162,14 @@ class Normalizer
             'anzahl_zimmer' => (string) $flaechen?->getAnzahlZimmer(),
             'anzahl_schlafzimmer' => (string) $flaechen?->getAnzahlSchlafzimmer(),
             'anzahl_badezimmer' => (string) $flaechen?->getAnzahlBadezimmer(),
-            'balkon' => $this->asCharBool((int) $flaechen?->getAnzahlBalkone() > 0),
-            'terrasse' => $this->asCharBool((int) $flaechen?->getAnzahlTerrassen() > 0),
+            'anzahl_balkone' => (string) $flaechen?->getAnzahlBalkone(),
+            'anzahl_terrassen' => (string) $flaechen?->getAnzahlTerrassen(),
+
+            // Stellplätze
+            'anzahl_garagen' => (string) $preise?->getStpGarage()?->getAnzahl(),
+            'stp_freiplatz' => $this->asCharBool((int) $stellplatzFreiplatz?->getAnzahl() > 0),
+            'stp_carport' => $this->asCharBool((int) $stellplatzCarport?->getAnzahl() > 0),
+            'stp_garage' => $this->asCharBool((int) $stellplatzGarage?->getAnzahl() > 0),
 
             // Etagen
             'etage' => (string) $geo?->getEtage(),
@@ -271,22 +292,26 @@ class Normalizer
     }
 
     /**
-     * @return array<string, bool>
+     * @return array<string, ResourceType>
      */
-    private function compileImageData(Immobilie $immobilie): array
+    private function compileResourceData(Immobilie $immobilie): array
     {
-        $images = [];
+        $resources = [];
 
         foreach ($immobilie->getAnhaenge()?->getAnhang() ?? [] as $anhang) {
             if (null === ($path = $anhang->getDaten()?->getPfad())) {
                 continue;
             }
 
-            $images[$path] = 'TITELBILD' === $anhang->getGruppe() ?
-                ObjectData::IMAGE_TYPE_TITLE : ObjectData::IMAGE_TYPE_GALLERY;
+            $resources[$path] = match ($anhang->getGruppe()) {
+                Anhang::GRUPPE_TITELBILD => ResourceType::titleImage,
+                Anhang::GRUPPE_BILD => ResourceType::galleryImage,
+                Anhang::GRUPPE_DOKUMENTE => ResourceType::document,
+                default => ResourceType::other,
+            };
         }
 
-        return $images;
+        return $resources;
     }
 
     private function asCharBool(bool|null $state): string

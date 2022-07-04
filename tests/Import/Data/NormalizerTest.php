@@ -53,12 +53,14 @@ class NormalizerTest extends TestCase
             array_keys($unmapped),
             [
                 // Basic metadata
-                'id', 'pid', 'tstamp', 'sorting', 'ptable', 'alias',
+                'id', 'pid', 'tstamp', 'date_create', 'sorting', 'ptable', 'alias',
                 'property_number', 'betreuer', 'inactive',
-                // Media
+                // Resources
                 'image', 'gallery', 'ordersrc_gallery', 'gallery_fullsize',
+                'expose', 'ordersrc_expose',
+                'dokuments', 'ordersrc_dokuments',
                 // Static defaults
-                'published', 'top_object', 'notelist', 'quelle', 'protection_usergroup', 'pfad',
+                'published', 'top_object', 'notelist', 'quelle', 'protection_usergroup',
                 'inactive',
             ]
         );
@@ -80,7 +82,7 @@ class NormalizerTest extends TestCase
         self::assertSame($expectedObjectId, $result->getObjectId());
         self::assertSameKeyValuePairs($expectedObjectProperties, $result->getObjectProperties());
         self::assertSameKeyValuePairs($expectedAgentData, $result->getAgentData());
-        self::assertSame($expectedImageFile, $result->getMainImage());
+        self::assertSame($expectedImageFile, $result->getTitleImage());
         self::assertSameKeyValuePairs($expectedGalleryFiles, $result->getGalleryImages());
     }
 
@@ -115,16 +117,18 @@ class NormalizerTest extends TestCase
                 'adresse_street' => 'Phantasiestr. 101',
                 'adresse_zipcode' => '52078',
                 'anzahl_badezimmer' => '2',
+                'anzahl_balkone' => '',
                 'anzahl_etagen' => '2',
+                'anzahl_garagen' => '',
                 'anzahl_schlafzimmer' => '3',
                 'anzahl_stellplaetze' => '1',
+                'anzahl_terrassen' => '',
                 'anzahl_zimmer' => '6',
                 'ausricht_balkon_terrasse' => null,
                 'aussenprovision' => '3,57 % inkl. MwSt.',
                 'ausstatt_beschr' => 'Das Objekt bietet eine variable Raumaufteilung mit vielen Nutzungsmöglichkeiten.',
                 'ausstatt_kategorie' => '',
                 'badewanne' => '',
-                'balkon' => '',
                 'baujahr' => 2002,
                 'betriebskostennetto' => '',
                 'bisdatum' => '',
@@ -185,8 +189,14 @@ class NormalizerTest extends TestCase
                 'sauna' => '',
                 'sonstige_angaben' => 'Vereinbaren Sie noch heute Ihren persönlichen Besichtigungstermin!',
                 'stellplatzart' => null,
+                'stp_carport' => '',
+                'stp_carport_preis' => '0.00',
+                'stp_freiplatz' => '',
+                'stp_freiplatz_preis' => '0.00',
+                'stp_garage' => '',
+                'stp_garage_preis' => '0.00',
                 'stromwert' => '',
-                'terrasse' => '',
+                'user' => 'zentrale@e-blick.de',
                 'verfuegbar_ab' => 'ab sofort',
                 'verkaufsflaeche' => '',
                 'vermietbare_flaeche' => '',
@@ -215,7 +225,6 @@ class NormalizerTest extends TestCase
                 'Zimmer1.jpg',
                 'Zimmer2.jpg',
                 'Bad.jpg',
-                'Grundriss.jpg',
             ],
         ];
     }

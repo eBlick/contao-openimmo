@@ -116,7 +116,7 @@ class Importer
                 $filesystem->mkdir($basePath);
             }
 
-            $archive->extractResourceFiles($basePath, ...$object->getImageFiles());
+            $archive->extractResourceFiles($basePath, ...$object->getResourceFiles());
             $this->fileUtil->synchronizeResources($object);
         }
     }

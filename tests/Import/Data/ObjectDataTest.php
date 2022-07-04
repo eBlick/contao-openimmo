@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace EBlick\ContaoOpenImmoImport\Tests\Import\Data;
 
 use EBlick\ContaoOpenImmoImport\Import\Data\ObjectData;
+use EBlick\ContaoOpenImmoImport\Import\Data\ResourceType;
 use PHPUnit\Framework\TestCase;
 
 class ObjectDataTest extends TestCase
@@ -28,10 +29,12 @@ class ObjectDataTest extends TestCase
                 'agent' => 'data',
             ],
             [
-                'image1' => ObjectData::IMAGE_TYPE_GALLERY,
-                'image2' => ObjectData::IMAGE_TYPE_GALLERY,
-                'image3' => ObjectData::IMAGE_TYPE_TITLE,
-                'image4' => ObjectData::IMAGE_TYPE_GALLERY,
+                'image1' => ResourceType::galleryImage,
+                'image2' => ResourceType::galleryImage,
+                'image3' => ResourceType::titleImage,
+                'image4' => ResourceType::galleryImage,
+                'expose' => ResourceType::document,
+                'other' => ResourceType::other,
             ]
         );
 
@@ -54,8 +57,10 @@ class ObjectDataTest extends TestCase
             $data->getAgentData()
         );
 
-        self::assertSame(['image1', 'image2', 'image3', 'image4'], $data->getImageFiles());
-        self::assertSame('image3', $data->getMainImage());
+        self::assertSame(['image1', 'image2', 'image3', 'image4', 'expose', 'other'], $data->getResourceFiles());
+        self::assertSame('image3', $data->getTitleImage());
         self::assertSame(['image1', 'image2', 'image4'], $data->getGalleryImages());
+        self::assertSame(['expose'], $data->getDocuments());
+        self::assertSame(['other'], $data->getOtherAttachments());
     }
 }
