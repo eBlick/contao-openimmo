@@ -1,7 +1,7 @@
 {
   "name": "eblick/contao-openimmo",
   "license": "proprietary",
-  "type": "bundle",
+  "type": "contao-bundle",
   "require": {
     "php": "^8.1",
     "ext-dom": "*",
