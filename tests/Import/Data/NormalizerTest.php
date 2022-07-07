@@ -111,7 +111,7 @@ class NormalizerTest extends TestCase
             // Object properties
             [
                 'abdatum' => '',
-                'adresse' => '50.12345 6.12345',
+                'adresse' => '50.12345,6.12345',
                 'adresse_city' => 'Aachen / Brand',
                 'adresse_country' => 'DEU',
                 'adresse_street' => 'Phantasiestr. 101',

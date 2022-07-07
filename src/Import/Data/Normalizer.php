@@ -123,7 +123,7 @@ class Normalizer
             'adresse_zipcode' => (string) $geo?->getPlz(),
             'adresse_country' => (string) $geo?->getLand()?->getIsoLand(),
             'bundesland' => (string) $geo?->getBundesland(),
-            'adresse' => sprintf('%s %s', $geoKoordinaten?->getBreitengrad(), $geoKoordinaten?->getLaengengrad()),
+            'adresse' => sprintf('%s,%s', $geoKoordinaten?->getBreitengrad(), $geoKoordinaten?->getLaengengrad()),
             'objektadresse_freigeben' => $this->asCharBool($verwaltungObjekt?->getObjektadresseFreigeben()),
 
             // Preise + Kosten
