@@ -94,7 +94,7 @@ class DatabaseSynchronizer
                         // Static defaults
                         'published' => '1',
                         'top_object' => '',
-                        'notelist' => '',
+                        'notelist' => '1',
                         'quelle' => 'onoffice',
                         'protection_usergroup' => 2,
                     ]
