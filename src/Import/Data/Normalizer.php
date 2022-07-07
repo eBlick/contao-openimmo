@@ -331,13 +331,7 @@ class Normalizer
 
     private function formatMoney(float|null $moneyValueInInsaneFormat): string
     {
-        preg_match('/^((\d+)\.|)(\d+)$/', (string) $moneyValueInInsaneFormat, $matches);
-
-        return sprintf(
-            '%d.%s',
-            $matches[2] ?? 0 ?: 0,
-            str_pad(substr($matches[3] ?? '0', 0, 2), 2, '0'),
-        );
+        return number_format($moneyValueInInsaneFormat ?? 0.0, 2, '.', '');
     }
 
     private function formatDate(string|null $date): string
