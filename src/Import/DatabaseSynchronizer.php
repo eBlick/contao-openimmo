@@ -89,7 +89,7 @@ class DatabaseSynchronizer
                         'date_create' => $time,
                         'alias' => $objectToCreate->getObjectAlias(),
                         'property_number' => $objectToCreate->getObjectId(),
-                        'betreuer' => (string) $this->findBetreuerId($objectToCreate),
+                        'betreuer' => (string) $this->findBetreuerId($ccFibaAnbieterId, $objectToCreate),
 
                         // Static defaults
                         'published' => '1',
@@ -199,11 +199,11 @@ class DatabaseSynchronizer
         return $affectedColumns;
     }
 
-    private function findBetreuerId(ObjectData $objectData): int|null
+    private function findBetreuerId(int $ccFibaAnbieterId, ObjectData $objectData): int|null
     {
         return $this->connection->fetchOne(
-            'SELECT id FROM cc_fiba_anbieter_betreuer WHERE external_id=?',
-            [$objectData->getAgentData()['external_id']]
+            'SELECT id FROM cc_fiba_anbieter_betreuer WHERE pid=? AND external_id=?',
+            [$ccFibaAnbieterId, $objectData->getAgentData()['external_id']]
         ) ?: null;
     }
 
