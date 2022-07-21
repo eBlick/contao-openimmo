@@ -9,10 +9,12 @@ declare(strict_types=1);
 
 namespace EBlick\ContaoOpenImmoImport\Import\Data;
 
+use EBlick\ContaoOpenImmoImport\Import\ImportMode;
 use JMS\Serializer\Handler\HandlerRegistryInterface;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Component\Filesystem\Path;
 use Ujamii\OpenImmo\API\Openimmo;
+use Ujamii\OpenImmo\API\Uebertragung;
 use Ujamii\OpenImmo\Handler\DateTimeHandler;
 
 class OpenImmoArchive
@@ -81,6 +83,21 @@ class OpenImmoArchive
             Openimmo::class,
             'xml'
         );
+    }
+
+    public function getImportMode(): ImportMode
+    {
+        $uebertragung = $this->getOpenImmoData()->getUebertragung();
+
+        if (Uebertragung::UMFANG_VOLL === $uebertragung?->getUmfang()) {
+            return ImportMode::Synchronize;
+        }
+
+        return match ($mode = $uebertragung?->getModus()) {
+            Uebertragung::MODUS_NEW, Uebertragung::MODUS_CHANGE => ImportMode::Patch,
+            Uebertragung::MODUS_DELETE => ImportMode::Delete,
+            default => throw new \InvalidArgumentException(sprintf('Could not parse transmit mode, got "%s".', $mode))
+        };
     }
 
     /**

@@ -27,7 +27,7 @@ class DatabaseSynchronizer
      *
      * @return array{created: int, updated: int, deleted: int}
      */
-    public function mergeObjects(int $ccFibaAnbieterId, array $objects): array
+    public function synchronize(int $ccFibaAnbieterId, array $objects, ImportMode $mode): array
     {
         // Index remote data
         $remoteObjectsByObjectId = [];
@@ -46,10 +46,16 @@ class DatabaseSynchronizer
         );
 
         // Find out what to create/update/delete
-        [$itemsToCreate, $itemsToUpdate, $itemsToDelete] = $this->diff(
-            $remoteObjectsByObjectId,
-            $localIdsByObjectId
-        );
+        [$itemsToCreate, $itemsToUpdate, $itemsToDelete] = match ($mode) {
+            ImportMode::Synchronize => $this->diff($remoteObjectsByObjectId, $localIdsByObjectId),
+            ImportMode::Patch => array_replace(
+                $this->diff($remoteObjectsByObjectId, $localIdsByObjectId),
+                [2 => []]
+            ),
+            ImportMode::Delete => [
+                [], [], array_values(array_intersect_key($localIdsByObjectId, $remoteObjectsByObjectId)),
+            ]
+        };
 
         $this->connection->beginTransaction();
 
