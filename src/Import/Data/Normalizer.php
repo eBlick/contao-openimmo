@@ -220,8 +220,8 @@ class Normalizer
                 'Zentral' => $heizungsart?->getZentral() ?? false,
             ]),
             'fahrstuhl' => $this->serializeFlags([
-                'lasten' => $fahrstuhl?->getLasten() ?? false,
-                'personen' => $fahrstuhl?->getPersonen() ?? false,
+                'Lasten' => $fahrstuhl?->getLasten() ?? false,
+                'Personen' => $fahrstuhl?->getPersonen() ?? false,
             ]),
             'ausricht_balkon_terrasse' => $this->serializeFlags([
                 'nord' => $ausrichtungBalkonTerrasse?->getNord() ?? false,
