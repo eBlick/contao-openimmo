@@ -46,6 +46,7 @@ class Normalizer
         $verwaltungObjekt = $immobilie->getVerwaltungObjekt();
         $objektKategorie = $immobilie->getObjektkategorie();
         $nutzungsart = $objektKategorie?->getNutzungsart();
+        $vermarktungsart = $objektKategorie?->getVermarktungsart();
         $objektart = $objektKategorie?->getObjektart();
         $zustand = $immobilie->getZustandAngaben();
         $freitexte = $immobilie->getFreitexte();
@@ -101,6 +102,13 @@ class Normalizer
                 'Gewerbe' => $nutzungsart?->getGewerbe() ?? false,
                 'Anlage' => $nutzungsart?->getAnlage() ?? false,
                 'WAZ' => $nutzungsart?->getWaz() ?? false,
+            ]),
+            // Vermarkungsart
+            'vermarktungsart' => $this->serializeFlags([
+                'Kauf' => $nutzungsart?->getKauf() ?? false,
+                'Miete' => $nutzungsart?->getMiete() ?? false,
+                'Pacht' => $nutzungsart?->getPacht() ?? false,
+                'Erbpacht' => $nutzungsart?->getErbpacht() ?? false,
             ]),
             'objektart' => $objektartKey,
             'objekttyp' => $objektartValue,
