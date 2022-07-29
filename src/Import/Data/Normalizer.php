@@ -105,10 +105,10 @@ class Normalizer
             ]),
             // Vermarkungsart
             'vermarktungsart' => $this->serializeFlags([
-                'Kauf' => $nutzungsart?->getKauf() ?? false,
-                'Miete' => $nutzungsart?->getMiete() ?? false,
-                'Pacht' => $nutzungsart?->getPacht() ?? false,
-                'Erbpacht' => $nutzungsart?->getErbpacht() ?? false,
+                'Kauf' => $vermarktungsart?->getKauf() ?? false,
+                'Miete' => $vermarktungsart?->getMietePacht() ?? false,
+                'Pacht' => $vermarktungsart?->getLeasing() ?? false,
+                'Erbpacht' => $vermarktungsart?->getErbpacht() ?? false,
             ]),
             'objektart' => $objektartKey,
             'objekttyp' => $objektartValue,
