@@ -103,6 +103,9 @@ class Normalizer
                 'Anlage' => $nutzungsart?->getAnlage() ?? false,
                 'WAZ' => $nutzungsart?->getWaz() ?? false,
             ]),
+            'objektart' => $objektartKey,
+            'objekttyp' => $objektartValue,
+
             // Vermarkungsart
             'vermarktungsart' => $this->serializeFlags([
                 'Kauf' => $vermarktungsart?->getKauf() ?? false,
@@ -110,8 +113,6 @@ class Normalizer
                 'Pacht' => $vermarktungsart?->getLeasing() ?? false,
                 'Erbpacht' => $vermarktungsart?->getErbpacht() ?? false,
             ]),
-            'objektart' => $objektartKey,
-            'objekttyp' => $objektartValue,
 
             // Zustand
             'baujahr' => (int) $zustand?->getBaujahr(),
