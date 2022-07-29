@@ -199,6 +199,7 @@ class NormalizerTest extends TestCase
                 'user' => 'zentrale@e-blick.de',
                 'verfuegbar_ab' => 'ab sofort',
                 'verkaufsflaeche' => '',
+                'vermarktungsart' => 'a:1:{i:0;s:4:"Kauf";}',
                 'vermietbare_flaeche' => '',
                 'waehrung' => 'EUR',
                 'waermewert' => '',

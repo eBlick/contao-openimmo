@@ -46,6 +46,7 @@ class Normalizer
         $verwaltungObjekt = $immobilie->getVerwaltungObjekt();
         $objektKategorie = $immobilie->getObjektkategorie();
         $nutzungsart = $objektKategorie?->getNutzungsart();
+        $vermarktungsart = $objektKategorie?->getVermarktungsart();
         $objektart = $objektKategorie?->getObjektart();
         $zustand = $immobilie->getZustandAngaben();
         $freitexte = $immobilie->getFreitexte();
@@ -104,6 +105,14 @@ class Normalizer
             ]),
             'objektart' => $objektartKey,
             'objekttyp' => $objektartValue,
+
+            // Vermarkungsart
+            'vermarktungsart' => $this->serializeFlags([
+                'Kauf' => $vermarktungsart?->getKauf() ?? false,
+                'Miete' => $vermarktungsart?->getMietePacht() ?? false,
+                'Pacht' => $vermarktungsart?->getLeasing() ?? false,
+                'Erbpacht' => $vermarktungsart?->getErbpacht() ?? false,
+            ]),
 
             // Zustand
             'baujahr' => (int) $zustand?->getBaujahr(),
@@ -220,8 +229,8 @@ class Normalizer
                 'Zentral' => $heizungsart?->getZentral() ?? false,
             ]),
             'fahrstuhl' => $this->serializeFlags([
-                'lasten' => $fahrstuhl?->getLasten() ?? false,
-                'personen' => $fahrstuhl?->getPersonen() ?? false,
+                'Lasten' => $fahrstuhl?->getLasten() ?? false,
+                'Personen' => $fahrstuhl?->getPersonen() ?? false,
             ]),
             'ausricht_balkon_terrasse' => $this->serializeFlags([
                 'nord' => $ausrichtungBalkonTerrasse?->getNord() ?? false,

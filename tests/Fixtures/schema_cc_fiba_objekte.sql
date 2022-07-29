@@ -16,6 +16,7 @@ create table cc_fiba_objekte
     image                           binary(16)                                  null,
     user                            varchar(255)                     default '' not null,
     nutzungsart                     blob                                        null,
+    vermarktungsart                 blob                                        null,
     nebenkosten                     varchar(255)                     default '' not null,
     heizkosten_enthalten            char                             default '' not null,
     heizkosten                      varchar(255)                     default '' not null,
