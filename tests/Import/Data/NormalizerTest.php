@@ -176,7 +176,7 @@ class NormalizerTest extends TestCase
                 'nebenkosten' => '',
                 'nutzflaeche' => '',
                 'nutzungsart' => 'a:1:{i:0;s:6:"Wohnen";}',
-                'objausstattung__unterkellert' => '1',
+                'objausstattung_unterkellert' => '1',
                 'objektadresse_freigeben' => '1',
                 'objektart' => 'Haus',
                 'objektbeschreibung' => 'Das Kaufobjekt besticht durch seine überzeugende, solide Massivbauweise.',

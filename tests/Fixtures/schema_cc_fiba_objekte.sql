@@ -106,7 +106,7 @@ create table cc_fiba_objekte
     distanzen_bus                   varchar(255)                     default '' not null,
     stellplatzart                   blob                                        null,
     quelle                          varchar(64)                      default '' not null,
-    ObjAusstattung__unterkellert    varchar(64)                      default '' not null,
+    objausstattung_unterkellert    varchar(64)                      default '' not null,
     anzahl_balkone                  varchar(255)                     default '' not null,
     anzahl_terrassen                varchar(255)                     default '' not null,
     stp_freiplatz                   char                             default '' not null,
