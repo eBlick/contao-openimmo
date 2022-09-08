@@ -186,7 +186,7 @@ class Normalizer
             'sauna' => $this->asCharBool($ausstattung?->getSauna()),
             'badewanne' => $this->asCharBool($bad?->getWanne()),
             'dusche' => $this->asCharBool($bad?->getDusche()),
-            'objausstattung__unterkellert' => $this->asCharBool(
+            'objausstattung_unterkellert' => $this->asCharBool(
                 Unterkellert::KELLER_NEIN !== $ausstattung?->getUnterkellert()?->getKeller()
             ),
 
