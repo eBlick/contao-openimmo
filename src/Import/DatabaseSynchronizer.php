@@ -228,7 +228,7 @@ class DatabaseSynchronizer
 
         $getUuids = static fn (array $archivePaths) => array_filter(
             array_map(
-                static fn (string $path): string => $uuidsByPath[$resourcePathMap[$path]] ?? null,
+                static fn (string|null $path): string|null => $uuidsByPath[$resourcePathMap[$path] ?? null] ?? null,
                 $archivePaths,
             )
         );
