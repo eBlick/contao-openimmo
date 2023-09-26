@@ -68,6 +68,10 @@ class Normalizer
         $stellplatzGarage = $preise?->getStpGarage();
         $stellplatzCarport = $preise?->getStpCarport();
         $stellplatzFreiplatz = $preise?->getStpFreiplatz();
+        $stellplatzDuplex = $preise?->getStpDuplex();
+        $stellplatzParkhaus = $preise?->getStpParkhaus();
+        $stellplatzTiefgarage = $preise?->getStpTiefgarage();
+        
 
         $objektartMap = [
             'Haus' => ($objektart?->getHaus()[0] ?? null)?->getHaustyp(),
@@ -154,6 +158,23 @@ class Normalizer
             'stp_garage_preis' => $this->formatMoney(
                 $stellplatzGarage?->getStellplatzkaufpreis() ?? $stellplatzGarage?->getStellplatzmiete()
             ),
+            'stp_duplex_preis' => $this->formatMoney(
+                $stellplatzDuplex?->getStellplatzkaufpreis() ?? $stellplatzDuplex?->getStellplatzmiete()
+            ),
+            'stp_parkhaus_preis' => $this->formatMoney(
+                $stellplatzParkhaus?->getStellplatzkaufpreis() ?? $stellplatzParkhaus?->getStellplatzmiete()
+            ),
+            'stp_tiefgarage_preis' => $this->formatMoney(
+                $stellplatzTiefgarage?->getStellplatzkaufpreis() ?? $stellplatzTiefgarage?->getStellplatzmiete()
+            ),
+            
+            // Mietobjekte
+            'kaltmiete' => $this->formatMoney($preise?->getKaltmiete()),
+            'warmmiete' => $this->formatMoney($preise?->getWarmmiete()),
+            'pacht' => $this->formatMoney($preise?->getPacht()),
+            'kaution' => $preise?->getKaution() ? $this->formatMoney($preise?->getKaution()) : ($preise?->getKautionText() ? $preise?->getKautionText() : ''),
+            'haustiere' => (string) $verwaltungObjekt?->getHaustiere(),
+            'gewerbliche_nutzung' => $this->asCharBool($verwaltungObjekt?->getGewerblicheNutzung()),
 
             // Flächen
             'wohnflaeche' => (string) $flaechen?->getWohnflaeche(),
@@ -166,6 +187,7 @@ class Normalizer
             'gastroflaeche' => (string) $flaechen?->getGastroflaeche(),
             'verkaufsflaeche' => (string) $flaechen?->getVerkaufsflaeche(),
             'vermietbare_flaeche' => (string) $flaechen?->getVermietbareFlaeche(),
+            'grundstuecksflaeche' => (string) $flaechen?->getGrundstuecksflaeche(),
 
             // Räume
             'anzahl_zimmer' => (string) $flaechen?->getAnzahlZimmer(),
@@ -179,6 +201,9 @@ class Normalizer
             'stp_freiplatz' => $this->asCharBool((int) $stellplatzFreiplatz?->getAnzahl() > 0),
             'stp_carport' => $this->asCharBool((int) $stellplatzCarport?->getAnzahl() > 0),
             'stp_garage' => $this->asCharBool((int) $stellplatzGarage?->getAnzahl() > 0),
+            'stp_duplex' => $this->asCharBool((int) $stellplatzDuplex?->getAnzahl() > 0),
+            'stp_parkhaus' => $this->asCharBool((int) $stellplatzParkhaus?->getAnzahl() > 0),
+            'stp_tiefgarage' => $this->asCharBool((int) $stellplatzTiefgarage?->getAnzahl() > 0),
 
             // Etagen
             'etage' => (string) $geo?->getEtage(),
@@ -193,8 +218,15 @@ class Normalizer
             'klimatisiert' => $this->asCharBool($ausstattung?->getKlimatisiert()),
             'wintergarten' => $this->asCharBool($ausstattung?->getWintergarten()),
             'sauna' => $this->asCharBool($ausstattung?->getSauna()),
+            'swimming_pool' => $this->asCharBool($ausstattung?->getSwimmingPool()),
             'badewanne' => $this->asCharBool($bad?->getWanne()),
             'dusche' => $this->asCharBool($bad?->getDusche()),
+            'bad_fenster' => $this->asCharBool($bad?->getFenster()),
+            'bidet' => $this->asCharBool($bad?->getBidet()),
+            'pissoir' => $this->asCharBool($bad?->getPissoir()),
+            'gaeste_wc' => $this->asCharBool($ausstattung?->getGaesteWc()),
+            'dv_verkabelung' => $this->asCharBool($ausstattung?->getDvVerkabelung()),
+            'rampe' => $this->asCharBool($ausstattung?->getRampe()),
             'objausstattung_unterkellert' => $this->asCharBool(
                 Unterkellert::KELLER_NEIN !== $ausstattung?->getUnterkellert()?->getKeller()
             ),
@@ -297,6 +329,7 @@ class Normalizer
             'lastname' => (string) $kontaktPerson?->getName(),
             'email_direkt' => (string) $kontaktPerson?->getEmailDirekt(),
             'tel_durchwahl' => (string) $kontaktPerson?->getTelDurchw(),
+            'tel_zentrale' => (string) $kontaktPerson?->getTelZentrale(),
         ];
     }
 
