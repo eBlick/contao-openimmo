@@ -93,8 +93,28 @@ class OpenImmoArchive
             return ImportMode::Synchronize;
         }
 
-        return match ($mode = $uebertragung?->getModus()) {
-            Uebertragung::MODUS_NEW, Uebertragung::MODUS_CHANGE, null => ImportMode::Patch,
+        $mode = $uebertragung?->getModus();
+
+        // Flowfact does not seem to transmit a global import mode but adds
+        // information on each object instead. Until we support synchronizing
+        // on a per-element level, we can only try to emulate the global mode.
+        // This works if ALL objects feature the exact same mode.
+        if (null === $mode) {
+            $modes = [];
+
+            foreach ($this->getOpenImmoData()->getAnbieter() as $anbieter) {
+                foreach ($anbieter->getImmobilie() as $immobilie) {
+                    $modes[] = $immobilie->getVerwaltungTechn()?->getAktion()?->getAktionart();
+                }
+            }
+
+            if (1 === \count($modes = array_unique($modes))) {
+                $mode = $modes[0];
+            }
+        }
+
+        return match ($mode) {
+            Uebertragung::MODUS_NEW, Uebertragung::MODUS_CHANGE => ImportMode::Patch,
             Uebertragung::MODUS_DELETE => ImportMode::Delete,
             default => throw new \InvalidArgumentException(sprintf('Could not parse transmit mode, got "%s".', $mode))
         };
