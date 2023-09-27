@@ -100,6 +100,11 @@ class OpenImmoArchive
         };
     }
 
+    public function getSenderSoftware(): string|null
+    {
+        return $this->getOpenImmoData()->getUebertragung()?->getSendersoftware();
+    }
+
     /**
      * @return list<string>
      */

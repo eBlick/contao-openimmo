@@ -27,7 +27,7 @@ class DatabaseSynchronizer
      *
      * @return array{created: int, updated: int, deleted: int}
      */
-    public function synchronize(int $ccFibaAnbieterId, array $objects, ImportMode $mode): array
+    public function synchronize(int $ccFibaAnbieterId, array $objects, ImportMode $mode, string|null $senderSoftware): array
     {
         // Index remote data
         $remoteObjectsByObjectId = [];
@@ -96,12 +96,12 @@ class DatabaseSynchronizer
                         'alias' => $objectToCreate->getObjectAlias(),
                         'property_number' => $objectToCreate->getObjectId(),
                         'betreuer' => (string) $this->findBetreuerId($ccFibaAnbieterId, $objectToCreate),
+                        'quelle' => $senderSoftware ?? '',
 
                         // Static defaults
                         'published' => '1',
                         'top_object' => '',
                         'notelist' => '1',
-                        'quelle' => 'onoffice',
                         'protection_usergroup' => 2,
                     ]
                 )

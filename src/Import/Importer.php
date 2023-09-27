@@ -59,7 +59,12 @@ class Importer
             $this->createAndSyncFiles($objects, $archive);
 
             // Synchronize the database
-            $stats[$anbieterNr] = $this->synchronizer->synchronize($ccFibaAnbieterId, $objects, $archive->getImportMode());
+            $stats[$anbieterNr] = $this->synchronizer->synchronize(
+                $ccFibaAnbieterId,
+                $objects,
+                $archive->getImportMode(),
+                $archive->getSenderSoftware()
+            );
 
             $this->logger->info(
                 sprintf(
