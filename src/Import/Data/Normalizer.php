@@ -71,7 +71,6 @@ class Normalizer
         $stellplatzDuplex = $preise?->getStpDuplex();
         $stellplatzParkhaus = $preise?->getStpParkhaus();
         $stellplatzTiefgarage = $preise?->getStpTiefgarage();
-        
 
         $objektartMap = [
             'Haus' => ($objektart?->getHaus()[0] ?? null)?->getHaustyp(),
@@ -167,12 +166,12 @@ class Normalizer
             'stp_tiefgarage_preis' => $this->formatMoney(
                 $stellplatzTiefgarage?->getStellplatzkaufpreis() ?? $stellplatzTiefgarage?->getStellplatzmiete()
             ),
-            
+
             // Mietobjekte
             'kaltmiete' => $this->formatMoney($preise?->getKaltmiete()),
             'warmmiete' => $this->formatMoney($preise?->getWarmmiete()),
             'pacht' => $this->formatMoney($preise?->getPacht()),
-            'kaution' => $preise?->getKaution() ? $this->formatMoney($preise?->getKaution()) : ($preise?->getKautionText() ? $preise?->getKautionText() : ''),
+            'kaution' => $preise?->getKaution() ? $this->formatMoney($preise?->getKaution()) : ($preise?->getKautionText() ?: ''),
             'haustiere' => (string) $verwaltungObjekt?->getHaustiere(),
             'gewerbliche_nutzung' => $this->asCharBool($verwaltungObjekt?->getGewerblicheNutzung()),
 
@@ -227,8 +226,8 @@ class Normalizer
             'gaeste_wc' => $this->asCharBool($ausstattung?->getGaesteWc()),
             'dv_verkabelung' => $this->asCharBool($ausstattung?->getDvVerkabelung()),
             'rampe' => $this->asCharBool($ausstattung?->getRampe()),
-            'objausstattung_unterkellert' => $this->asCharBool(
-                Unterkellert::KELLER_NEIN !== $ausstattung?->getUnterkellert()?->getKeller()
+            'ObjAusstattung_unterkellert' => $this->asCharBool(
+                \in_array($ausstattung?->getUnterkellert()?->getKeller(), [Unterkellert::KELLER_JA, Unterkellert::KELLER_TEIL], true)
             ),
 
             // Ausstattung (serialized flags)
