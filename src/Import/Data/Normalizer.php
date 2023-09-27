@@ -72,7 +72,6 @@ class Normalizer
         $stellplatzParkhaus = $preise?->getStpParkhaus();
         $stellplatzTiefgarage = $preise?->getStpTiefgarage();
 
-
         $objektartMap = [
             'Haus' => ($objektart?->getHaus()[0] ?? null)?->getHaustyp(),
             'Wohnung' => ($objektart?->getWohnung()[0] ?? null)?->getWohnungtyp(),
@@ -172,7 +171,7 @@ class Normalizer
             'kaltmiete' => $this->formatMoney($preise?->getKaltmiete()),
             'warmmiete' => $this->formatMoney($preise?->getWarmmiete()),
             'pacht' => $this->formatMoney($preise?->getPacht()),
-            'kaution' => $preise?->getKaution() ? $this->formatMoney($preise?->getKaution()) : ($preise?->getKautionText() ? $preise?->getKautionText() : ''),
+            'kaution' => $preise?->getKaution() ? $this->formatMoney($preise?->getKaution()) : ($preise?->getKautionText() ?: ''),
             'haustiere' => (string) $verwaltungObjekt?->getHaustiere(),
             'gewerbliche_nutzung' => $this->asCharBool($verwaltungObjekt?->getGewerblicheNutzung()),
 
