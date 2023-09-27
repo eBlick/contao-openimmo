@@ -94,7 +94,7 @@ class OpenImmoArchive
         }
 
         return match ($mode = $uebertragung?->getModus()) {
-            Uebertragung::MODUS_NEW, Uebertragung::MODUS_CHANGE => ImportMode::Patch,
+            Uebertragung::MODUS_NEW, Uebertragung::MODUS_CHANGE, null => ImportMode::Patch,
             Uebertragung::MODUS_DELETE => ImportMode::Delete,
             default => throw new \InvalidArgumentException(sprintf('Could not parse transmit mode, got "%s".', $mode))
         };

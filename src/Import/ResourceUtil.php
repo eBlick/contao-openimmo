@@ -42,6 +42,11 @@ class ResourceUtil
         $map = [];
 
         foreach ($objectData->getResourceFiles() as $path) {
+            // Skip paths that do not reference files in the archive
+            if (str_contains(Path::canonicalize($path), '/')) {
+                continue;
+            }
+
             $map[$path] = Path::makeRelative(
                 Path::join($this->getResourceBasePath($objectData), $path),
                 Path::getDirectory($this->uploadDir)
