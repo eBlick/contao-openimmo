@@ -71,6 +71,7 @@ class Normalizer
         $stellplatzDuplex = $preise?->getStpDuplex();
         $stellplatzParkhaus = $preise?->getStpParkhaus();
         $stellplatzTiefgarage = $preise?->getStpTiefgarage();
+        
 
         $objektartMap = [
             'Haus' => ($objektart?->getHaus()[0] ?? null)?->getHaustyp(),
@@ -166,12 +167,12 @@ class Normalizer
             'stp_tiefgarage_preis' => $this->formatMoney(
                 $stellplatzTiefgarage?->getStellplatzkaufpreis() ?? $stellplatzTiefgarage?->getStellplatzmiete()
             ),
-
+            
             // Mietobjekte
             'kaltmiete' => $this->formatMoney($preise?->getKaltmiete()),
             'warmmiete' => $this->formatMoney($preise?->getWarmmiete()),
             'pacht' => $this->formatMoney($preise?->getPacht()),
-            'kaution' => $preise?->getKaution() ? $this->formatMoney($preise?->getKaution()) : ($preise?->getKautionText() ?: ''),
+            'kaution' => $preise?->getKaution() ? $this->formatMoney($preise?->getKaution()) : ($preise?->getKautionText() ? $preise?->getKautionText() : ''),
             'haustiere' => (string) $verwaltungObjekt?->getHaustiere(),
             'gewerbliche_nutzung' => $this->asCharBool($verwaltungObjekt?->getGewerblicheNutzung()),
 
@@ -348,6 +349,8 @@ class Normalizer
                 Anhang::GRUPPE_TITELBILD => ResourceType::titleImage,
                 Anhang::GRUPPE_BILD => ResourceType::galleryImage,
                 Anhang::GRUPPE_DOKUMENTE => ResourceType::document,
+                Anhang::GRUPPE_INNENANSICHTEN => ResourceType::galleryImage,
+                Anhang::GRUPPE_AUSSENANSICHTEN => ResourceType::galleryImage,
                 default => ResourceType::other,
             };
         }
