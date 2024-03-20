@@ -115,7 +115,7 @@ class Importer
         $filesystem = new Filesystem();
 
         foreach ($objects as $object) {
-            $basePath = $this->fileUtil->getResourceBasePath($object);
+            $basePath = $this->fileUtil->getResourceBasePathFromObjectData($object);
 
             if (!$filesystem->exists($basePath)) {
                 $filesystem->mkdir($basePath);

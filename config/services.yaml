@@ -28,3 +28,12 @@ services:
       - '@contao.filesystem.dbafs.files'
 
   EBlick\ContaoOpenImmoImport\Import\Data\Normalizer: ~
+
+  EBlick\ContaoOpenImmoImport\CronJob\PruneObjectsCron:
+    arguments:
+      - '@database_connection'
+      - '@contao.filesystem.virtual.files'
+      - '@EBlick\ContaoOpenImmoImport\Import\ResourceUtil'
+      - '%kernel.project_dir%/%contao.upload_path%'
+    tags:
+      - { name: contao.cronjob, interval: daily}

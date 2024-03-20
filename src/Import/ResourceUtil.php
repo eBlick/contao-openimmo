@@ -22,13 +22,18 @@ class ResourceUtil
     ) {
     }
 
-    public function getResourceBasePath(ObjectData $objectData): string
+    public function getResourceBasePathFromObjectData(ObjectData $objectData): string
+    {
+        return $this->getResourceBasePath($objectData->getAnbieterNr(), $objectData->getObjectId());
+    }
+
+    public function getResourceBasePath(string $anbieterNr, string $objectId): string
     {
         return Path::join(
             $this->uploadDir,
             $this->immoDir,
-            $objectData->getAnbieterNr(),
-            $objectData->getObjectId()
+            $anbieterNr,
+            $objectId
         );
     }
 
@@ -48,7 +53,7 @@ class ResourceUtil
             }
 
             $map[$path] = Path::makeRelative(
-                Path::join($this->getResourceBasePath($objectData), $path),
+                Path::join($this->getResourceBasePathFromObjectData($objectData), $path),
                 Path::getDirectory($this->uploadDir)
             );
         }
@@ -61,6 +66,6 @@ class ResourceUtil
      */
     public function synchronizeResources(ObjectData $object): void
     {
-        $this->dbafs->sync(Path::makeRelative($this->getResourceBasePath($object), $this->uploadDir));
+        $this->dbafs->sync(Path::makeRelative($this->getResourceBasePathFromObjectData($object), $this->uploadDir));
     }
 }
