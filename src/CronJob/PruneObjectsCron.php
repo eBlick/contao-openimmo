@@ -32,7 +32,7 @@ class PruneObjectsCron
             ->executeQuery(
                 "SELECT a.onoffice_anbieter_nummer as anbieterNr, o.property_number as objectId
                  FROM cc_fiba_objekte o
-                 LEFT JOIN eblick_fiba.cc_fiba_anbieter a ON o.pid = a.id
+                 LEFT JOIN cc_fiba_anbieter a ON o.pid = a.id
                  WHERE published='' AND o.tstamp < ?",
                 [strtotime(self::PRUNE_CONDITION)]
             )
